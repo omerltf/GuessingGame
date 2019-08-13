@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NumberGuess {
     class Program {
-        static int maxPlayers = 2;
+        static int MaxPlayers = 2;
 
         /// <summary>
         /// Method to have user input their name
@@ -18,7 +18,7 @@ namespace NumberGuess {
                 Console.WriteLine();
                 Console.Write("Player {0}: Please enter your name. ", playerNumber);
                 string nameInput = Console.ReadLine();
-                if (String.IsNullOrEmpty(nameInput)) {
+                if (string.IsNullOrEmpty(nameInput)) {
                     Console.WriteLine("Incorrect Input. Please try again.");
                     continue;
                 }
@@ -34,7 +34,6 @@ namespace NumberGuess {
         /// <param name="playerName">Which player is inputting their number?</param>
         /// <param name="message">Message to display on console</param>
         /// <returns>The integer input by the player</returns>
-
         public static int GetNumber(string playerName, string message) {
             const int minimumValue = 0;
             const int maximumValue = 100;
@@ -42,9 +41,9 @@ namespace NumberGuess {
             //loop makes sure no bogey values are input
             while (true) {
                 Console.WriteLine("{0}: {1}", playerName, message);
-                string temp_input = Console.ReadLine();
+                string tempInput = Console.ReadLine();
                 int input = 0 ;
-                Int32.TryParse(temp_input,out input);
+                int.TryParse(tempInput,out input);
                 if (!(input > minimumValue && input <= maximumValue)) {
                     Console.WriteLine("Incorrect input. Please try again.");
                     continue;
@@ -109,7 +108,7 @@ namespace NumberGuess {
                     ConsoleKeyInfo selectedOption = Console.ReadKey();
                     Console.WriteLine();
                     answer = selectedOption.KeyChar - '0';
-                    if (!(answer > 1 && answer <= maxPlayers)) {
+                    if (!(answer > 1 && answer <= MaxPlayers)) {
                         Console.WriteLine("Incorrect input. Please try again.");
                         continue;
                     }
@@ -117,12 +116,12 @@ namespace NumberGuess {
                         break;
                     }
                 }
-                string[] PlayerNames = new string[answer];
+                string[] playerNames = new string[answer];
                 for (int i = 1; i <= answer; i++) {
-                    PlayerNames[i - 1] = GetPlayerName(i);
+                    playerNames[i - 1] = GetPlayerName(i);
                 }
 
-                PlayGame(PlayerNames);
+                PlayGame(playerNames);
 
                 Console.WriteLine();
 
